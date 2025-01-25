@@ -1,13 +1,39 @@
 .hr {
   border: 1px solid #334155;
   border-width: 1px;
+  width: 100%;
 }
 .name {
   color: #ffffff;
   font-family: 'Roboto';
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 400;
+  padding-left: 10px;
 }
 .list-item {
-  border: 1px solid #334155;
+  height: 60px;
+}
+.details {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+.visit-btn {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 12px;
+  background-color: #3b82f6;
+  border-radius: 3px;
+  border: none;
+  height: 27px;
+  width: 70px;
+  margin-right: 10px;
+}
+.visited {
+  font-family: 'Roboto';
+  font-size: 18px;
+  color: #94a3b8;
+  margin: 0px;
+  padding-right: 20px;
+  padding-top: 7px;
 }

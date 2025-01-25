@@ -3,11 +3,29 @@ import './index.css'
 
 class Countries extends Component {
   render() {
-    const {eachCountry} = this.props
-    const {name} = eachCountry
+    const {eachCountry, visited} = this.props
+    const {name, isVisited, id} = eachCountry
+    const visitedCountry = () => {
+      visited(id)
+    }
     return (
       <li className="list-item">
-        <h1 className="name">{name}</h1>
+        <div className="details">
+          <p className="name">{name}</p>
+          {isVisited ? (
+            <p className="visited">Visited</p>
+          ) : (
+            <button
+              type="button"
+              className="visit-btn"
+              onClick={visitedCountry}
+            >
+              Visit
+            </button>
+          )}
+        </div>
+
+        <hr className="hr" />
       </li>
     )
   }

@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Countries from './components/Countries'
+import VisitedCountries from './components/VisitedCountries'
 import './App.css'
 
 const initialCountriesList = [
@@ -77,14 +78,64 @@ const initialCountriesList = [
 
 // Replace your code here
 class App extends Component {
+  state = {countryList: initialCountriesList}
+
+  visited = id => {
+    const {countryList} = this.state
+    const newList = countryList.map(eachCountry => {
+      if (eachCountry.id === id) {
+        const updatedList = {...eachCountry, isVisited: !eachCountry.isVisited}
+        return updatedList
+      }
+      return eachCountry
+    })
+    this.setState({countryList: newList})
+  }
+
+  deleteCountry = id => {
+    const {countryList} = this.state
+    const newList = countryList.map(eachCountry => {
+      if (eachCountry.id === id) {
+        const updatedList = {...eachCountry, isVisited: !eachCountry.isVisited}
+        return updatedList
+      }
+      return eachCountry
+    })
+    this.setState({countryList: newList})
+  }
+
   render() {
+    const {countryList} = this.state
+    const updatedList = countryList.filter(each => each.isVisited === true)
+
     return (
       <div className="bg-container">
         <h1 className="countries">Countries</h1>
-        <ul className="country-ul">
-          {initialCountriesList.map(eachCountry => (
-            <Countries eachCountry={eachCountry} key={eachCountry.id} />
-          ))}
+        <div className="flex-container1">
+          <ul className="country-ul">
+            {countryList.map(eachCountry => (
+              <Countries
+                eachCountry={eachCountry}
+                key={eachCountry.id}
+                visited={this.visited}
+              />
+            ))}
+          </ul>
+        </div>
+
+        <h1 className="visited-countries">Visited Countries</h1>
+        <ul className="country-list">
+          {updatedList <= 0 ? (
+            <p className="no-countries">No Countries Visited Yet!</p>
+          ) : (
+            updatedList.map(item => (
+              <VisitedCountries
+                item={item}
+                key={item.id}
+                deleteCountry={this.deleteCountry}
+              />
+            ))
+          )}
         </ul>
       </div>
     )
